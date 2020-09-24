@@ -122,7 +122,7 @@ namespace NewBankBD
         /// Método que permite listar de la tabla Cliente capa BD
         /// </summary>
         // ******************* = Método List = ******************************
-        public List<Cliente_List_Result> Cliente_List(int cli_id)
+        public List<Cliente_List_Result> Cliente_List(int? cli_id)
         {
             try
             {

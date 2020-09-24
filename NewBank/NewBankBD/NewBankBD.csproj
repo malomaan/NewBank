@@ -50,22 +50,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Cliente.cs">
       <DependentUpon>NewBankModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ClienteBD.cs" />
     <Compile Include="Cliente_List_Result.cs">
       <DependentUpon>NewBankModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Cuenta.cs">
       <DependentUpon>NewBankModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="CuentaBD.cs" />
     <Compile Include="Cuenta_List_Result.cs">
       <DependentUpon>NewBankModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Movimientos.cs">
       <DependentUpon>NewBankModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="MovimientosBD.cs" />
     <Compile Include="Movimientos_List_Result.cs">
       <DependentUpon>NewBankModel.tt</DependentUpon>
     </Compile>

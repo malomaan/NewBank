@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="NewBankModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="NewBankModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cliente">
           <Key>
             <PropertyRef Name="cli_id" />
@@ -83,6 +83,9 @@
         <Function Name="Cliente_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cli_id" Type="int" Mode="In" />
         </Function>
+        <Function Name="Cliente_Email_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cli_email" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="Cliente_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cli_identificacion" Type="varchar" Mode="In" />
           <Parameter Name="cli_apellido1" Type="varchar" Mode="In" />
@@ -108,6 +111,14 @@
           <Parameter Name="cli_ciudad" Type="varchar" Mode="In" />
           <Parameter Name="cli_celular" Type="varchar" Mode="In" />
           <Parameter Name="cli_email" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Cuenta_Cliente_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cli_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Cuenta_ControlSaldo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cue_id" Type="int" Mode="In" />
+          <Parameter Name="cue_valor" Type="money" Mode="In" />
+          <Parameter Name="mov_tipo" Type="varchar" Mode="In" />
         </Function>
         <Function Name="Cuenta_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cue_id" Type="int" Mode="In" />
@@ -172,8 +183,7 @@
             <End Role="Movimientos" EntitySet="Movimientos" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="NewBankModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -275,7 +285,7 @@
             <End Role="Movimientos" EntitySet="Movimientos" />
           </AssociationSet>
           <FunctionImport Name="Cliente_Delete">
-            <Parameter Name="cli_id" Mode="In" Type="Int32" />
+          <Parameter Name="cli_id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Cliente_Insert">
             <Parameter Name="cli_identificacion" Mode="In" Type="String" />
@@ -289,7 +299,7 @@
             <Parameter Name="cli_email" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="Cliente_List" ReturnType="Collection(NewBankModel.Cliente_List_Result)">
-            <Parameter Name="cli_id" Mode="In" Type="Int32" />
+          <Parameter Name="cli_id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Cliente_Update">
             <Parameter Name="cli_id" Mode="In" Type="Int32" />
@@ -304,7 +314,7 @@
             <Parameter Name="cli_email" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="Cuenta_Delete">
-            <Parameter Name="cue_id" Mode="In" Type="Int32" />
+          <Parameter Name="cue_id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Cuenta_Insert">
             <Parameter Name="cue_numero" Mode="In" Type="String" />
@@ -315,7 +325,7 @@
             <Parameter Name="cue_saldoactual" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="Cuenta_List" ReturnType="Collection(NewBankModel.Cuenta_List_Result)">
-            <Parameter Name="cue_id" Mode="In" Type="Int32" />
+          <Parameter Name="cue_id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Cuenta_Update">
             <Parameter Name="cue_id" Mode="In" Type="Int32" />
@@ -327,7 +337,7 @@
             <Parameter Name="cue_saldoactual" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="Movimientos_Delete">
-            <Parameter Name="mov_id" Mode="In" Type="Int32" />
+          <Parameter Name="mov_id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Movimientos_Insert">
             <Parameter Name="mov_fecha" Mode="In" Type="DateTime" />
@@ -338,7 +348,7 @@
             <Parameter Name="cue_id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Movimientos_List" ReturnType="Collection(NewBankModel.Movimientos_List_Result)">
-            <Parameter Name="mov_id" Mode="In" Type="Int32" />
+          <Parameter Name="mov_id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Movimientos_Update">
             <Parameter Name="mov_id" Mode="In" Type="Int32" />
@@ -348,6 +358,17 @@
             <Parameter Name="mov_tipo" Mode="In" Type="String" />
             <Parameter Name="cli_id" Mode="In" Type="Int32" />
             <Parameter Name="cue_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Cuenta_ControlSaldo">
+            <Parameter Name="cue_id" Mode="In" Type="Int32" />
+            <Parameter Name="cue_valor" Mode="In" Type="Decimal" />
+            <Parameter Name="mov_tipo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Cliente_Email_List" ReturnType="Collection(NewBankModel.Cliente_Email_List_Result)">
+            <Parameter Name="cli_email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Cuenta_Cliente_List" ReturnType="Collection(NewBankModel.Cuenta_Cliente_List_Result)">
+            <Parameter Name="cli_id" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="Cliente_List_Result">
@@ -379,6 +400,27 @@
           <Property Type="String" Name="mov_tipo" Nullable="true" MaxLength="1" />
           <Property Type="Int32" Name="cli_id" Nullable="true" />
           <Property Type="Int32" Name="cue_id" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Cliente_Email_List_Result">
+          <Property Type="Int32" Name="cli_id" Nullable="false" />
+          <Property Type="String" Name="cli_identificacion" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="cli_apellido1" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="cli_apellido2" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="cli_nombre1" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="cli_nombre2" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="cli_direccion" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="cli_ciudad" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="cli_celular" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="cli_email" Nullable="true" MaxLength="150" />
+        </ComplexType>
+        <ComplexType Name="Cuenta_Cliente_List_Result">
+          <Property Type="Int32" Name="cue_id" Nullable="false" />
+          <Property Type="String" Name="cue_numero" Nullable="true" MaxLength="250" />
+          <Property Type="Int32" Name="cli_id" Nullable="true" />
+          <Property Type="Boolean" Name="cue_activa" Nullable="true" />
+          <Property Type="DateTime" Name="cue_fechacreacion" Nullable="true" Precision="23" />
+          <Property Type="String" Name="cue_usuariocreacion" Nullable="true" MaxLength="150" />
+          <Property Type="Decimal" Name="cue_saldoactual" Nullable="true" Precision="19" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -479,6 +521,36 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Movimientos_Update" FunctionName="NewBankModel.Store.Movimientos_Update" />
+          <FunctionImportMapping FunctionImportName="Cuenta_ControlSaldo" FunctionName="NewBankModel.Store.Cuenta_ControlSaldo" />
+          <FunctionImportMapping FunctionImportName="Cliente_Email_List" FunctionName="NewBankModel.Store.Cliente_Email_List">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NewBankModel.Cliente_Email_List_Result">
+                <ScalarProperty Name="cli_id" ColumnName="cli_id" />
+                <ScalarProperty Name="cli_identificacion" ColumnName="cli_identificacion" />
+                <ScalarProperty Name="cli_apellido1" ColumnName="cli_apellido1" />
+                <ScalarProperty Name="cli_apellido2" ColumnName="cli_apellido2" />
+                <ScalarProperty Name="cli_nombre1" ColumnName="cli_nombre1" />
+                <ScalarProperty Name="cli_nombre2" ColumnName="cli_nombre2" />
+                <ScalarProperty Name="cli_direccion" ColumnName="cli_direccion" />
+                <ScalarProperty Name="cli_ciudad" ColumnName="cli_ciudad" />
+                <ScalarProperty Name="cli_celular" ColumnName="cli_celular" />
+                <ScalarProperty Name="cli_email" ColumnName="cli_email" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Cuenta_Cliente_List" FunctionName="NewBankModel.Store.Cuenta_Cliente_List">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NewBankModel.Cuenta_Cliente_List_Result">
+                <ScalarProperty Name="cue_id" ColumnName="cue_id" />
+                <ScalarProperty Name="cue_numero" ColumnName="cue_numero" />
+                <ScalarProperty Name="cli_id" ColumnName="cli_id" />
+                <ScalarProperty Name="cue_activa" ColumnName="cue_activa" />
+                <ScalarProperty Name="cue_fechacreacion" ColumnName="cue_fechacreacion" />
+                <ScalarProperty Name="cue_usuariocreacion" ColumnName="cue_usuariocreacion" />
+                <ScalarProperty Name="cue_saldoactual" ColumnName="cue_saldoactual" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

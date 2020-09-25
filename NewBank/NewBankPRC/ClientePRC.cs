@@ -132,6 +132,27 @@ namespace NewBankPRC
                 throw (Ex);
             }
         }
+
+        // ===========================================================================
+        /// <summary>
+        /// Author     : MARCO ANTONIO MARTINEZ LOPEZ
+        /// Create date: Sep 24 2020  6:55AM
+        /// Método que permite listar de la tabla Cliente capa BD
+        /// </summary>
+        // ******************* = Método List = ******************************
+        public List<Cliente_Email_List_Result> Cliente_Email_List(string cli_email)
+        {
+            try
+            {
+                var Cliente = (from TCliente in BDCliente.Cliente_Email_List(cli_email) select TCliente).ToList();
+                return Cliente;
+            }
+            catch (Exception Ex)
+            {
+                throw (Ex);
+            }
+        }
+
     }
     //FIN DE LA CLASE
 }

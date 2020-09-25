@@ -55,7 +55,7 @@ namespace NewBankBD
         /// Método que permite insertar en la tabla Movimientos capa BD
         /// </summary>
         // ******************* = Método Insert = ******************************
-        public void Movimientos_Insert(DateTime mov_fecha, string mov_origen, decimal mov_valor, string mov_tipo, int cli_id, int cue_id)
+        public void Movimientos_Insert(DateTime mov_fecha, string mov_origen, decimal? mov_valor, string mov_tipo, int? cli_id, int? cue_id)
         {
             try
             {

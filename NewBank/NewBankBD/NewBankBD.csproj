@@ -54,6 +54,9 @@
       <DependentUpon>NewBankModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ClienteBD.cs" />
+    <Compile Include="Cliente_Email_List_Result.cs">
+      <DependentUpon>NewBankModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Cliente_List_Result.cs">
       <DependentUpon>NewBankModel.tt</DependentUpon>
     </Compile>
@@ -61,6 +64,9 @@
       <DependentUpon>NewBankModel.tt</DependentUpon>
     </Compile>
     <Compile Include="CuentaBD.cs" />
+    <Compile Include="Cuenta_Cliente_List_Result.cs">
+      <DependentUpon>NewBankModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Cuenta_List_Result.cs">
       <DependentUpon>NewBankModel.tt</DependentUpon>
     </Compile>

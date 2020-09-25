@@ -294,5 +294,40 @@ namespace NewBankBD
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Movimientos_Update", mov_idParameter, mov_fechaParameter, mov_origenParameter, mov_valorParameter, mov_tipoParameter, cli_idParameter, cue_idParameter);
         }
+    
+        public virtual int Cuenta_ControlSaldo(Nullable<int> cue_id, Nullable<decimal> cue_valor, string mov_tipo)
+        {
+            var cue_idParameter = cue_id.HasValue ?
+                new ObjectParameter("cue_id", cue_id) :
+                new ObjectParameter("cue_id", typeof(int));
+    
+            var cue_valorParameter = cue_valor.HasValue ?
+                new ObjectParameter("cue_valor", cue_valor) :
+                new ObjectParameter("cue_valor", typeof(decimal));
+    
+            var mov_tipoParameter = mov_tipo != null ?
+                new ObjectParameter("mov_tipo", mov_tipo) :
+                new ObjectParameter("mov_tipo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Cuenta_ControlSaldo", cue_idParameter, cue_valorParameter, mov_tipoParameter);
+        }
+    
+        public virtual ObjectResult<Cliente_Email_List_Result> Cliente_Email_List(string cli_email)
+        {
+            var cli_emailParameter = cli_email != null ?
+                new ObjectParameter("cli_email", cli_email) :
+                new ObjectParameter("cli_email", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Cliente_Email_List_Result>("Cliente_Email_List", cli_emailParameter);
+        }
+    
+        public virtual ObjectResult<Cuenta_Cliente_List_Result> Cuenta_Cliente_List(Nullable<int> cli_id)
+        {
+            var cli_idParameter = cli_id.HasValue ?
+                new ObjectParameter("cli_id", cli_id) :
+                new ObjectParameter("cli_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Cuenta_Cliente_List_Result>("Cuenta_Cliente_List", cli_idParameter);
+        }
     }
 }

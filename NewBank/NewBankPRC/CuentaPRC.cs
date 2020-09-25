@@ -110,11 +110,52 @@ namespace NewBankPRC
         /// Método que permite listar de la tabla Cuenta capa PRC
         /// </summary>
         // ******************* = Método List = ******************************
-        public List<Cuenta_List_Result> Cuenta_List(int cue_id)
+        public List<Cuenta_List_Result> Cuenta_List(int? cue_id)
         {
             try
             {
                 var Cuenta = (from TCuenta in BDCuenta.Cuenta_List(cue_id) select TCuenta).ToList();
+                return Cuenta;
+            }
+            catch (Exception Ex)
+            {
+                throw (Ex);
+            }
+        }
+
+        // ===========================================================================
+        /// <summary>
+        /// Author     : MARCO ANTONIO MARTINEZ LOPEZ
+        /// Create date: Sep 24 2020  6:57AM
+        /// Método que permite actualizar Saldos en la tabla Cuenta capa BD
+        /// </summary>
+        // ******************* = Método Cuenta_ControlSaldo = ******************************
+        public void Cuenta_ControlSaldo(int? cue_id, decimal? cue_valor, string mov_tipo)
+        {
+            try
+            {
+                BDCuenta.Cuenta_ControlSaldo(cue_id, cue_valor, mov_tipo);
+            }
+            catch (Exception Ex)
+            {
+                throw (Ex);
+            }
+        }
+
+
+
+        // ===========================================================================
+        /// <summary>
+        /// Author     : MARCO ANTONIO MARTINEZ LOPEZ
+        /// Create date: Sep 24 2020  6:57AM
+        /// Método que permite listar de la tabla Cuenta capa BD
+        /// </summary>
+        // ******************* = Método List = ******************************
+        public List<Cuenta_Cliente_List_Result> Cuenta_Cliente_List(int? cli_id)
+        {
+            try
+            {
+                var Cuenta = (from TCuenta in BDCuenta.Cuenta_Cliente_List(cli_id) select TCuenta).ToList();
                 return Cuenta;
             }
             catch (Exception Ex)

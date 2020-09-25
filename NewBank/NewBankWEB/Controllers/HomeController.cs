@@ -23,14 +23,20 @@ namespace NewBankWEB.Controllers
     {
         string url = "https://localhost:44315/Api/";
 
+
+        LogUtilidad LogUTL = new LogUtilidad();
+
         public ActionResult Index()
         {
+            LogUTL.Registrar_Log("New Bank", "Inicio el Sistema", "INFO");
             return View();
         }
 
         [HttpPost]
         public ActionResult Index(Cliente cliente)
         {
+            LogUTL.Registrar_Log("New Bank", "Creación de Cuenta", "INFO");
+
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(url);
@@ -51,6 +57,7 @@ namespace NewBankWEB.Controllers
         [Authorize]
         public ActionResult Transacciones()
         {
+            LogUTL.Registrar_Log("New Bank", "Entro al Portal de Transacciones", "INFO");
             string Usuario = User.Identity.GetUserName();
             IEnumerable<Cliente> cliente = null;
             using (var client = new HttpClient())
@@ -148,6 +155,7 @@ namespace NewBankWEB.Controllers
 
                 if (PostResult.IsSuccessStatusCode)
                 {
+                    LogUTL.Registrar_Log("New Bank", "Transaccion exitosa", "INFO");
                     ViewBag.Info = "Transaccion exitosa";
                     return RedirectToAction("Transacciones");
                 }

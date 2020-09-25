@@ -103,7 +103,60 @@ namespace NewBankWEB.Controllers
     
 
 
-        public ActionResult About(string mensaje)
+
+        public ActionResult Operaciones(int id)
+        {
+            Movimientos movimiento = new Movimientos();
+            movimiento.cue_id = id;
+
+            IEnumerable<Cuenta> cuenta = null;
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(url);
+                var ResponseTask = client.GetAsync("CuentaAhorro/" + id.ToString());
+                ResponseTask.Wait();
+                var result = ResponseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readJob = result.Content.ReadAsAsync<IList<Cuenta>>();
+                    readJob.Wait();
+                    cuenta = readJob.Result;
+                }
+                else
+                {
+                    cuenta = Enumerable.Empty<Cuenta>();
+                    ModelState.AddModelError(string.Empty, "Error al consumir");
+                    return View("Index");
+                }
+            }
+            movimiento.cli_id = cuenta.FirstOrDefault().cli_id;
+
+            return View(movimiento);
+        }
+
+        [HttpPost]
+        public ActionResult Operaciones(Movimientos movimiento)
+        {
+            movimiento.mov_fecha = DateTime.Now;
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(url);
+                var PostJob = client.PostAsJsonAsync<Movimientos>("Movimientos", movimiento);
+                PostJob.Wait();
+                var PostResult = PostJob.Result;
+
+                if (PostResult.IsSuccessStatusCode)
+                {
+                    ViewBag.Info = "Transaccion exitosa";
+                    return RedirectToAction("Transacciones");
+                }
+                ModelState.AddModelError(string.Empty, "Se presento error al Registrar la transacción");
+            }
+            return View();
+        }
+
+            public ActionResult About(string mensaje)
         {
             
             ViewBag.Message = mensaje;

@@ -28,8 +28,14 @@ textarea {
 
 .control-label {
     font-weight: normal;
+    font-size:10px;
 }
 
 .form-group{
 
+}
+
+.icon-menu0 {
+    font-size: 25px;
+    color:#0094ff;
 }

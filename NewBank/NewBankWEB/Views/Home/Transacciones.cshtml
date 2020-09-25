@@ -1,0 +1,81 @@
+﻿@model IEnumerable<NewBankWEB.Models.Cuenta>
+@{
+    ViewBag.Title = "Portal Transaccional";
+}
+
+    <h2>Portal Transaccional</h2>
+    <hr />
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.Label("Identificación", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @ViewBag.Identificacion
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Cliente", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @ViewBag.Cliente
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Usuario", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @ViewBag.Usuario
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-success">
+        <div class="panel-heading"><h4><span class="glyphicon glyphicon-list-alt"></span> @ViewBag.Title </h4></div>
+        <div class="panel-body">
+            <p>
+                <a class='btn btn-success btn-sm' href="@Url.Action("Index")">
+                    <span class="glyphicon glyphicon-file"></span> Regresar
+                </a>
+
+            </p>
+
+            <div class="table-responsive">
+                <table id="listar" class="table table-bordered table-hover table-condensed">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.cue_numero)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.cue_activa)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.cue_saldoactual)
+                            </th>
+                            <th width="270px"> Operaciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.cue_numero)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.cue_activa)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.cue_saldoactual)
+                                </td>
+                                <td>
+                                    <a class='btn btn-primary btn-sm' href="@Url.Action("Edit", new { id = item.cue_id})">
+                                        <span class="glyphicon glyphicon-folder-open"></span> Movimientos
+                                    </a>
+                                    <a class='btn btn-warning btn-sm' href="@Url.Action("Edit", new { id = item.cue_id})">
+                                        <span class="glyphicon glyphicon-folder-open"></span> Realizar transacción
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+

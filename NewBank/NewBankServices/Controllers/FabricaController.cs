@@ -23,12 +23,14 @@ namespace NewBankServices.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet]
-        public IHttpActionResult FabricaGet(int Id)
+        public IHttpActionResult FabricaGet(string Email)
         {
-            List<Cliente_List_Result> Tcliente = new List<Cliente_List_Result>();
+            List<Cliente_Email_List_Result> Tcliente = new List<Cliente_Email_List_Result>();
+
             try
             {
-                Tcliente = ODACliente.Cliente_List(Id).ToList();
+                Tcliente = ODACliente.Cliente_Email_List(Email).ToList();
+
             }
             catch (Exception Ex)
             {
